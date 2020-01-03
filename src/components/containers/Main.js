@@ -9,8 +9,8 @@ import Practice from "../Practice.js"
 export default class Main extends Component {
 
   typedSentenceAnimation = () => {
-     var typed = new Typed('.intro', {
-       strings: ["Welcome to music.", "and other stuff"],
+     var typed = new Typed('.typed-text', {
+       strings: ["music", "JavaScript", "beats", "making patterns of sound."],
        stringsElement: null,
      		// typing speed
      		typeSpeed: 30,
@@ -21,7 +21,7 @@ export default class Main extends Component {
      		// time before backspacing
      		backDelay: 500,
      		// loop
-     		loop: true,
+     		loop: false,
      		// false = infinite
      		loopCount: 5,
      		// show cursor
@@ -43,22 +43,6 @@ export default class Main extends Component {
      });
   }
 
-  // musicSampler = () => {
-  //   const sampler =  new Tone.Players({
-  //     })
-  // }
-  //
-
-  // MusicTest(){
-  //   const synth = new Tone.MembraneSynth().toMaster();
-  //
-  //   function playSynth(){
-  //     synth.triggerAttackRelease("C2", "8n");
-  //   }
-  //   /** Play Controls **/
-  //   document.getElementById("play").addEventListener("click", function(){ playSynth(); });
-  // }
-
 
   componentDidMount(){
     {this.typedSentenceAnimation()}
@@ -70,7 +54,9 @@ export default class Main extends Component {
   render() {
     return (
       <div className="Main">
-        <div className="intro"></div>
+        <div className="text-container"></div>
+        <div className="intro">A playground for </div>
+        <div className="typed-text"></div>
         < Practice />
       </div>
     )

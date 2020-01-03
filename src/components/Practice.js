@@ -28,20 +28,7 @@ export default class Practice extends Component {
   playBeat = () => {
     const synth = new Tone.Noise().toMaster();
     synth.triggerAttackRelease('D2', '4n')
-
   }
-
-  // sequence = () => {
-  //   const sequence = new Tone.Sequence(function(time, idx){
-  //     this.musicTest()
-  //     console.log('hi')
-  //   }, [0,1,2,3]);
-  //
-  //   sequence.start()
-  //
-  //   $("#sequence").on("click", sequence.start())
-  // };
-  //
 
   intervals = () => {
     const synth = new Tone.MembraneSynth().toMaster();
@@ -80,7 +67,7 @@ export default class Practice extends Component {
     var synth = new Tone.FMSynth().connect(phaser);
     setInterval(function(){
       synth.triggerAttackRelease("E3", "7n")
-    }, 1000);
+    }, 500);
   }
 
 
@@ -94,11 +81,11 @@ export default class Practice extends Component {
   render() {
     return (
       <div className="Practice">
-        <button id="practice" onClick={this.musicTest}>Practice</button>
-        <button id="sequence" onClick={this.intervals}>Interval Beat</button>
-        <button id="sound2" onClick={this.sound2}>phaseer big</button>
-        <button id="sound3" onClick={this.sound3}>phaser small</button>
-        <button id="interval_phaser" onClick={this.phaserIntervals}>phaser interval</button>
+        <button id="practice" onClick={this.musicTest}></button>
+        <button id="sequence" onClick={this.intervals}></button>
+        <button id="phaser2" onClick={this.sound2}></button>
+        <button id="phaser3" onClick={this.sound3}></button>
+        <button id="interval_phaser" onClick={this.phaserIntervals}></button>
       </div>
     )
   }
