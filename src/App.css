@@ -32,11 +32,13 @@ body {
   color: var(--secondary-color);
   font-size: 25px;
   font-family: var(--sub-font);
+  height: 30px
 }
 
 button {
   height: 70px;
   margin: 5px;
+  margin-top: 20px;
   width: 70px;
   border-radius: 3px
 }

@@ -19,8 +19,9 @@ export default class Practice extends Component {
       let tone = tones[toneName]
       let other = tones[toneOther]
       synth.triggerAttackRelease(tone[0], tone[1])
-      // synth.triggerAttackRelease(other[0], other[1])
     }
+
+    $('.practice').css("background", "red")
     /** Play Controls **/
     playSynth()
   };
