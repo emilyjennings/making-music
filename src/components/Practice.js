@@ -60,7 +60,7 @@ export default class Practice extends Component {
   }
 
   phaserIntervals = () => {
-    var phaser = new Tone.Phaser({
+    const phaser = new Tone.Phaser({
     	"frequency" : 15,
     	"octaves" : 5,
     	"baseFrequency" : 1000
@@ -69,6 +69,10 @@ export default class Practice extends Component {
     setInterval(function(){
       synth.triggerAttackRelease("E3", "7n")
     }, 500);
+  }
+
+  oscillator = () => {
+    var fmOsc = new Tone.AMOscillator("Ab3", "sine", "square").toMaster().start();
   }
 
 
@@ -87,6 +91,7 @@ export default class Practice extends Component {
         <button id="phaser2" onClick={this.sound2}></button>
         <button id="phaser3" onClick={this.sound3}></button>
         <button id="interval_phaser" onClick={this.phaserIntervals}></button>
+        <button id="oscillator" onClick={this.oscillator}></button>
       </div>
     )
   }
