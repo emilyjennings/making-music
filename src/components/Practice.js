@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import $ from 'jquery'
 import Tone from 'tone'
 
+const sampler = new Tone.Players({
+  'kick': 'https://cdn.jsdelivr.net/gh/Tonejs/Tone.js/examples/audio/505/kick.mp3',
+  'snare': 'https://cdn.jsdelivr.net/gh/Tonejs/Tone.js/examples/audio/505/snare.mp3',
+  'hat': 'https://cdn.jsdelivr.net/gh/Tonejs/Tone.js/examples/audio/505/hh.mp3'
+})
+
+const volume = new Tone.Volume(5).toMaster();
+const volumeTwo = new Tone.Volume(-100).toMaster();
+sampler.connect(volume)
+
 
 export default class Practice extends Component {
 
@@ -72,15 +82,19 @@ export default class Practice extends Component {
   }
 
   oscillator = () => {
-    var fmOsc = new Tone.AMOscillator("Ab3", "sine", "square").toMaster().start();
+    var fmOsc = new Tone.AMOscillator("Ab3", "sine", "square").toMaster();
+    fmOsc.connect(volumeTwo)
+    fmOsc.start()
+  }
+
+
+  kickStart = () => {
+    sampler.get('kick').start()
   }
 
 
 
   componentDidMount(){
-    // this.musicTest()
-    // this.intervals()
-    // this.sequence()
   }
 
   render() {
@@ -92,6 +106,7 @@ export default class Practice extends Component {
         <button id="phaser3" onClick={this.sound3}></button>
         <button id="interval_phaser" onClick={this.phaserIntervals}></button>
         <button id="oscillator" onClick={this.oscillator}></button>
+        <button id="kick" onClick={this.kickStart}></button>
       </div>
     )
   }
