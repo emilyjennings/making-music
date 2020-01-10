@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import $ from 'jquery'
 import Tone from 'tone'
 
+import bear from '../audio_files/bear.mp3'
+
 const sampler = new Tone.Players({
   'kick': 'https://cdn.jsdelivr.net/gh/Tonejs/Tone.js/examples/audio/505/kick.mp3',
   'snare': 'https://cdn.jsdelivr.net/gh/Tonejs/Tone.js/examples/audio/505/snare.mp3',
-  'hat': 'https://cdn.jsdelivr.net/gh/Tonejs/Tone.js/examples/audio/505/hh.mp3'
+  'hat': 'https://cdn.jsdelivr.net/gh/Tonejs/Tone.js/examples/audio/505/hh.mp3',
+  // 'bear': '../audio_files/bear.mp3'
 })
 
 const volume = new Tone.Volume(5).toMaster();
-const volumeTwo = new Tone.Volume(-100).toMaster();
+const volumeTwo = new Tone.Volume(-200).toMaster();
 sampler.connect(volume)
 
 
@@ -89,9 +92,17 @@ export default class Practice extends Component {
 
 
   kickStart = () => {
-    sampler.get('kick').start()
+    setInterval(function(){
+      sampler.get('kick').start()
+    }, 250);
   }
 
+  bear = () => {
+    const jessBear = new Tone.Player(bear).toMaster();
+    // setInterval(function(){
+      jessBear.autostart = true;
+    // }, 500)
+  }
 
 
   componentDidMount(){
@@ -103,6 +114,7 @@ export default class Practice extends Component {
         <button id="practice" onClick={this.musicTest}></button>
         <button id="sequence" onClick={this.intervals}></button>
         <button id="phaser2" onClick={this.sound2}></button>
+        <button id="bear" onClick={this.bear}></button>
         <button id="phaser3" onClick={this.sound3}></button>
         <button id="interval_phaser" onClick={this.phaserIntervals}></button>
         <button id="oscillator" onClick={this.oscillator}></button>
