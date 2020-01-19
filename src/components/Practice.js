@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import $ from 'jquery'
 import Tone from 'tone'
 
+import Jess from './containers/Jess'
+
 import bear from '../audio_files/bear.mp3'
 
 const sampler = new Tone.Players({
@@ -99,9 +101,9 @@ export default class Practice extends Component {
 
   bear = () => {
     const jessBear = new Tone.Player(bear).toMaster();
-    // setInterval(function(){
-      jessBear.autostart = true;
-    // }, 500)
+    setInterval(function(){
+      jessBear.start()
+    }, 2000)
   }
 
 
@@ -114,11 +116,11 @@ export default class Practice extends Component {
         <button id="practice" onClick={this.musicTest}></button>
         <button id="sequence" onClick={this.intervals}></button>
         <button id="phaser2" onClick={this.sound2}></button>
-        <button id="bear" onClick={this.bear}></button>
         <button id="phaser3" onClick={this.sound3}></button>
         <button id="interval_phaser" onClick={this.phaserIntervals}></button>
         <button id="oscillator" onClick={this.oscillator}></button>
         <button id="kick" onClick={this.kickStart}></button>
+        < Jess />
       </div>
     )
   }
