@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import $ from 'jquery'
 import Tone from 'tone'
 
 import bear from '../../audio_files/bear.mp3'
@@ -7,12 +6,23 @@ import bear from '../../audio_files/bear.mp3'
 
 export default class Jess extends Component {
 
+  state = {
+    bearClicked: false,
+  }
+
   bear = () => {
     const jessBear = new Tone.Player(bear).toMaster();
-    setInterval(function(){
-      jessBear.start()
-    }, 2000)
+    if (this.state.bearClicked === false) {
+      this.setState({ bearClicked: true })
+      setInterval(function(){
+          jessBear.start()
+        }, 2300)
+    } else if (this.state.bearClicked === true) {
+      jessBear.stop()
+      this.setState({ bearClicked: false })
+    }
   }
+
 
 
   componentDidMount(){
@@ -20,7 +30,7 @@ export default class Jess extends Component {
 
   render() {
     return (
-      <div className="Practice">
+      <div className="bear">
         <button id="bear" onClick={this.bear}></button>
       </div>
     )

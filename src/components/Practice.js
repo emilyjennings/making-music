@@ -3,8 +3,7 @@ import $ from 'jquery'
 import Tone from 'tone'
 
 import Jess from './containers/Jess'
-
-import bear from '../audio_files/bear.mp3'
+import Parts from './containers/Parts'
 
 const sampler = new Tone.Players({
   'kick': 'https://cdn.jsdelivr.net/gh/Tonejs/Tone.js/examples/audio/505/kick.mp3',
@@ -19,6 +18,10 @@ sampler.connect(volume)
 
 
 export default class Practice extends Component {
+
+  state = {
+    oscClicked: false
+  }
 
   musicTest = () => {
     const synth = new Tone.MembraneSynth().toMaster();
@@ -66,7 +69,7 @@ export default class Practice extends Component {
 
   sound3 = () => {
     var phaser = new Tone.Phaser({
-    	"frequency" : 15,
+    	"frequency" : 20,
     	"octaves" : 5,
     	"baseFrequency" : 1000
     }).toMaster();
@@ -88,8 +91,14 @@ export default class Practice extends Component {
 
   oscillator = () => {
     var fmOsc = new Tone.AMOscillator("Ab3", "sine", "square").toMaster();
-    fmOsc.connect(volumeTwo)
-    fmOsc.start()
+    if (this.state.oscClicked === false) {
+      fmOsc.connect(volumeTwo)
+      fmOsc.start()
+      this.setState({ oscClicked: true })
+    } else if (this.state.oscClicked === true){
+      fmOsc.stop()
+      this.setState({ oscClicked: false })
+    }
   }
 
 
@@ -99,13 +108,45 @@ export default class Practice extends Component {
     }, 250);
   }
 
-  bear = () => {
-    const jessBear = new Tone.Player(bear).toMaster();
-    setInterval(function(){
-      jessBear.start()
-    }, 2000)
+  playParts = () => {
+
+    var synth = new Tone.Synth().toMaster()
+
+    //pass in an array of events
+    var part = new Tone.Part(function(time, event){
+    //   //the events will be given to the callback with the time they occur
+    //   synth.triggerAttackRelease(event.note, event.dur, time)
+    // }, [{ time : 0, note : 'C4', dur : '4n'},
+    //   { time : {'4n' : 1, '8n' : 1}, note : 'E4', dur : '8n'},
+    //   { time : '2n', note : 'G4', dur : '16n'},
+    //   { time : {'2n' : 1, '8t' : 1}, note : 'B4', dur : '4n'}])
+
+    //start the part at the beginning of the Transport's timeline
+      synth.triggerAttackRelease('C4', '4n')
+    }, 200)
+
+    part.start(0)
+
+    //loop the part 3 times
+    // part.loop = 3
+    // part.loopEnd = '1m'
+
+    // document.querySelector('#parts').addEventListener('change', e => Tone.Transport.toggle())
   }
 
+  loop = () => {
+    // create a new synth
+    const synth = new Tone.MembraneSynth().toMaster();
+    // create a new tone loop
+    const loop = new Tone.Loop(function(time) {
+      // Run once per eighth note, 8n, & log the time
+      console.log(time);
+      // trigger synth note
+      synth.triggerAttackRelease("C2", "2n");
+    }, "2n").start(0);
+    // Start the transport which is the main timeline
+    Tone.Transport.start();
+  }
 
   componentDidMount(){
   }
@@ -120,7 +161,7 @@ export default class Practice extends Component {
         <button id="interval_phaser" onClick={this.phaserIntervals}></button>
         <button id="oscillator" onClick={this.oscillator}></button>
         <button id="kick" onClick={this.kickStart}></button>
-        < Jess />
+        <button id="loop" onClick={this.loop}></button>
       </div>
     )
   }
