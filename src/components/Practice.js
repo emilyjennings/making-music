@@ -20,7 +20,7 @@ sampler.connect(volume)
 export default class Practice extends Component {
 
   state = {
-    oscClicked: false
+    partsClicked: false
   }
 
   musicTest = () => {
@@ -110,28 +110,25 @@ export default class Practice extends Component {
 
   playParts = () => {
 
-    var synth = new Tone.Synth().toMaster()
-
-    //pass in an array of events
-    var part = new Tone.Part(function(time, event){
-    //   //the events will be given to the callback with the time they occur
-    //   synth.triggerAttackRelease(event.note, event.dur, time)
-    // }, [{ time : 0, note : 'C4', dur : '4n'},
-    //   { time : {'4n' : 1, '8n' : 1}, note : 'E4', dur : '8n'},
-    //   { time : '2n', note : 'G4', dur : '16n'},
-    //   { time : {'2n' : 1, '8t' : 1}, note : 'B4', dur : '4n'}])
-
-    //start the part at the beginning of the Transport's timeline
-      synth.triggerAttackRelease('C4', '4n')
-    }, 200)
-
-    part.start(0)
-
-    //loop the part 3 times
-    // part.loop = 3
-    // part.loopEnd = '1m'
-
-    // document.querySelector('#parts').addEventListener('change', e => Tone.Transport.toggle())
+    // create a synth
+    const synth = new Tone.Synth().toMaster();
+    // create an array of notes to be played
+    const notes = ["C3", "Eb3", "G3", "Bb3"];
+    // create a new sequence with the synth and notes
+    const synthPart = new Tone.Sequence(
+      function(time, note) {
+        synth.triggerAttackRelease(note, "10hz", time);
+      },
+      notes,
+      "4n"
+    );
+    // Setup the synth to be ready to play on beat 1
+    synthPart.start();
+    // Note that if you pass a time into the start method
+    // you can specify when the synth part starts
+    // e.g. .start('8n') will start after 1 eighth note
+    // start the transport which controls the main timeline
+    Tone.Transport.start();
   }
 
   loop = () => {
@@ -162,6 +159,8 @@ export default class Practice extends Component {
         <button id="oscillator" onClick={this.oscillator}></button>
         <button id="loop" onClick={this.loop}></button>
         <button id="kick" onClick={this.kickStart}></button>
+        <button id="parts" onClick={this.playParts}></button>
+        < Jess />
       </div>
     )
   }

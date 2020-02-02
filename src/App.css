@@ -72,11 +72,12 @@ button {
 }
 
 #bear {
-  background: #AAF3C5
+  background: #AAF3C5;
+  width: 80%
 }
 
 #parts {
-  background: #AAF3EA
+  background: #F3ECAA
 }
 
 #loop {
