@@ -160,8 +160,8 @@ export default class Practice extends Component {
         <button id="phaser3" onClick={this.sound3}></button>
         <button id="interval_phaser" onClick={this.phaserIntervals}></button>
         <button id="oscillator" onClick={this.oscillator}></button>
-        <button id="kick" onClick={this.kickStart}></button>
         <button id="loop" onClick={this.loop}></button>
+        <button id="kick" onClick={this.kickStart}></button>
       </div>
     )
   }
