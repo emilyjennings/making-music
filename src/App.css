@@ -51,19 +51,19 @@ button {
   background: #F3ECAA;
 }
 
-#phaser2 {
-  background: #CDF3AA;
+#beat_one {
+  background: #AAF3A2;
 }
 
-#phaser3 {
-  background: #AAF3EA
+#beat_two {
+  background: #AAF1EE
 }
 
-#interval_phaser {
+#tone_one {
   background: #AABEF3;
 }
 
-#oscillator {
+#tone_two {
   background: #F3AABE
 }
 
@@ -73,13 +73,21 @@ button {
 
 #bear {
   background: #AAF3C5;
-  width: 80%
+  width: 30%
 }
 
 #parts {
   background: #F3ECAA
 }
 
+#sequence_one {
+  background: #F3C7AA
+}
+
 #loop {
   background: #F3CEEA
+}
+
+#stop {
+  background: #D4EAAE
 }

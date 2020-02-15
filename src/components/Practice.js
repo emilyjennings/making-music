@@ -3,7 +3,7 @@ import $ from 'jquery'
 import Tone from 'tone'
 
 import Jess from './containers/Jess'
-import Parts from './containers/Parts'
+// import Parts from './containers/Parts'
 
 const sampler = new Tone.Players({
   'kick': 'https://cdn.jsdelivr.net/gh/Tonejs/Tone.js/examples/audio/505/kick.mp3',
