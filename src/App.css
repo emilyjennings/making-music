@@ -43,6 +43,12 @@ button {
   border-radius: 3px
 }
 
+button:hover {
+  height: 71px;
+  width: 71px;
+  border: 2px solid var(--secondary-color);
+}
+
 #practice {
   background: #F3CEAA;
 }
@@ -89,5 +95,21 @@ button {
 }
 
 #stop {
-  background: #D4EAAE
+  border: 2px solid var(--secondary-color);
+  background-color: #262c2d;
+  font-family: 'Monoton', serif;
+  background-image:
+    radial-gradient(var(--secondary-color) 3%, transparent 0),
+    radial-gradient(var(--secondary-color) 3%, transparent 0);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+#stop:hover {
+  border: 2px solid #9EEE96;
+  background-image:
+    radial-gradient(#9EEE96 5%, transparent 0),
+    radial-gradient(#9EEE96 5%, transparent 0);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
 }

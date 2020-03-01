@@ -1,3 +1,5 @@
+// This is a voice recording - it may come back as a button soon
+
 import React, { Component } from 'react';
 import Tone from 'tone'
 
@@ -19,7 +21,7 @@ export default class Jess extends Component {
           jessBear.start()
         }, 2300)
     } else if (this.state.bearClicked === true) {
-      jessBear.stop()
+      clearInterval(jessBear)
       this.setState({ bearClicked: false })
     }
   }

@@ -1,3 +1,5 @@
+// First try at all of this - this file can be ignored and will be deleted later
+
 import React, { Component } from 'react';
 import $ from 'jquery'
 import Tone from 'tone'

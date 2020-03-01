@@ -16,12 +16,7 @@ export default class Sequences extends Component {
       notes,
       "4n"
     );
-    // Setup the synth to be ready to play on beat 1
     synthPart.start();
-    // Note that if you pass a time into the start method
-    // you can specify when the synth part starts
-    // e.g. .start('8n') will start after 1 eighth note
-    // start the transport which controls the main timeline
     Tone.Transport.start();
   }
 
